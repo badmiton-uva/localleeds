@@ -1,0 +1,98 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:is(.dark *));
+
+:root {
+  --background: oklch(1 0 0);
+  --foreground: oklch(0.22 0.04 258);
+  --surface: oklch(0.985 0.003 255);
+  --surface-2: oklch(0.965 0.006 255);
+  --border: oklch(0.925 0.008 255);
+  --muted: oklch(0.55 0.02 255);
+  --primary: oklch(0.28 0.075 258);
+  --primary-foreground: oklch(0.99 0 0);
+  --accent: oklch(0.56 0.19 260);
+  --accent-soft: oklch(0.955 0.03 258);
+  --success: oklch(0.55 0.13 155);
+  --success-soft: oklch(0.955 0.04 155);
+  --warning: oklch(0.62 0.14 75);
+  --warning-soft: oklch(0.96 0.05 85);
+  --danger: oklch(0.55 0.2 25);
+  --danger-soft: oklch(0.96 0.03 25);
+  --ring: oklch(0.56 0.19 260 / 0.35);
+}
+
+.dark {
+  --background: oklch(0.17 0.03 258);
+  --foreground: oklch(0.95 0.005 255);
+  --surface: oklch(0.205 0.032 258);
+  --surface-2: oklch(0.245 0.034 258);
+  --border: oklch(0.31 0.035 258);
+  --muted: oklch(0.7 0.02 255);
+  --primary: oklch(0.93 0.01 255);
+  --primary-foreground: oklch(0.2 0.04 258);
+  --accent: oklch(0.7 0.14 255);
+  --accent-soft: oklch(0.28 0.06 258);
+  --success: oklch(0.75 0.14 155);
+  --success-soft: oklch(0.27 0.05 155);
+  --warning: oklch(0.8 0.13 80);
+  --warning-soft: oklch(0.3 0.05 80);
+  --danger: oklch(0.72 0.17 25);
+  --danger-soft: oklch(0.29 0.06 25);
+  --ring: oklch(0.7 0.14 255 / 0.4);
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-border: var(--border);
+  --color-muted: var(--muted);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-accent: var(--accent);
+  --color-accent-soft: var(--accent-soft);
+  --color-success: var(--success);
+  --color-success-soft: var(--success-soft);
+  --color-warning: var(--warning);
+  --color-warning-soft: var(--warning-soft);
+  --color-danger: var(--danger);
+  --color-danger-soft: var(--danger-soft);
+  --font-sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  --radius-card: 0.75rem;
+}
+
+* { border-color: var(--border); }
+
+html { color-scheme: light; }
+html.dark { color-scheme: dark; }
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans);
+  font-feature-settings: "cv11", "ss01";
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+}
+
+/* Impresión / exportación a PDF de propuestas */
+@media print {
+  @page { margin: 18mm; }
+  body { background: white; color: black; }
+  .no-print { display: none !important; }
+  .print-only { display: block !important; }
+}
+.print-only { display: none; }
+
+/* Gráficos: una sola serie en azul; escalas secuenciales derivadas del mismo tono */
+:root { --series-1: #2a78d6; --grid: oklch(0.93 0.006 255); }
+.dark { --series-1: #3987e5; --grid: oklch(0.3 0.03 258); }
